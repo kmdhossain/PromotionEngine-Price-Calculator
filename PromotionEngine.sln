@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1738
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.ConsoleApp", "..\PromotionEngine.ConsoleApp\PromotionEngine.ConsoleApp.csproj", "{93D5D051-5A97-4C06-B675-DB2661106197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Lib", "PromotionEngine.Lib\PromotionEngine.Lib.csproj", "{AED55A85-F17E-427B-A9A0-8274BE578FCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.Lib", "PromotionEngine.Lib\PromotionEngine.Lib.csproj", "{AED55A85-F17E-427B-A9A0-8274BE578FCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Tests", "PromotionEngine.Tests\PromotionEngine.Tests.csproj", "{DDC4F5DE-CE0F-48EF-8B08-BCB38572D399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.Tests", "PromotionEngine.Tests\PromotionEngine.Tests.csproj", "{DDC4F5DE-CE0F-48EF-8B08-BCB38572D399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Promotions", "PromotionEngine.Promotions\PromotionEngine.Promotions.csproj", "{BCCE53C2-0ED2-4EB8-B1D4-5B91EEC405E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.Promotions", "PromotionEngine.Promotions\PromotionEngine.Promotions.csproj", "{BCCE53C2-0ED2-4EB8-B1D4-5B91EEC405E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.TestHelpers", "PromotionEngine.TestHelpers\PromotionEngine.TestHelpers.csproj", "{63DEC515-12F1-4837-97C0-40AB2617DD4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.TestHelpers", "PromotionEngine.TestHelpers\PromotionEngine.TestHelpers.csproj", "{63DEC515-12F1-4837-97C0-40AB2617DD4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.ConsoleApp", "PromotionEngine.ConsoleApp\PromotionEngine.ConsoleApp.csproj", "{63774E11-3246-498B-AA07-984CCCAB7CDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93D5D051-5A97-4C06-B675-DB2661106197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93D5D051-5A97-4C06-B675-DB2661106197}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93D5D051-5A97-4C06-B675-DB2661106197}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93D5D051-5A97-4C06-B675-DB2661106197}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AED55A85-F17E-427B-A9A0-8274BE578FCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AED55A85-F17E-427B-A9A0-8274BE578FCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED55A85-F17E-427B-A9A0-8274BE578FCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
