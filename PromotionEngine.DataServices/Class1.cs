@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace PromotionEngine.Lib
+namespace PromotionEngine.DataServices
 {
     public class Class1
     {
-
     }
 }

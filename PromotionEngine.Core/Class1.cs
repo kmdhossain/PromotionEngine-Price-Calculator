@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace PromotionEngine.Lib
+namespace PromotionEngine.Core
 {
     public class Class1
     {
-
     }
 }
