@@ -1,0 +1,27 @@
+===============================================
+Pseudo code
+
+===============================================
+Calculate Scenario 
+
+foreach (scenarioItem in Scenario)
+	if (scenarioItem.Product exists in Promotions)
+		total += ApplyPromotion (scenarioItem)
+	else
+		total += scenarioItem.Product.Price * scenarioItem.Quantity
+
+===============================================
+Apply Promotion (scenarioItem)
+	if (scenarioItem is in Single Product Promption)
+		CalculateSingleProductPromotion (scenarioItem)
+	else if (scenarioItem is the only item in Scenario)
+		CalculateSingleProductPromotion (scenarioItem)
+	else // scenario item exists in multiple product promotion, all of which products is included in Scenario
+		{
+			if (scenarioItem is not the last item in promotion) return 0;
+
+			load all products from promotion,
+			load all products from scenario
+			calculate total for this promotion
+		}
+===============================================
