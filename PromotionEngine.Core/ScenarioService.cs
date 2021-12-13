@@ -21,7 +21,7 @@ namespace PromotionEngine.Core
             {
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
                 if (promotion == null)
-                    totalCalculatedPrice += scenarioItem.Product.UnitPrice * scenarioItem.Quantity;
+                    totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
                 else
                 {
                     var promotionOccurance = scenarioItem.Quantity / promotion.ProductAndQuantity[scenarioItem.Product.SKU];
