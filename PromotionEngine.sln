@@ -9,13 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Tests", "Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.TestHelpers", "PromotionEngine.TestHelpers\PromotionEngine.TestHelpers.csproj", "{63DEC515-12F1-4837-97C0-40AB2617DD4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.ConsoleApp", "PromotionEngine.ConsoleApp\PromotionEngine.ConsoleApp.csproj", "{63774E11-3246-498B-AA07-984CCCAB7CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Core", "PromotionEngine.Core\PromotionEngine.Core.csproj", "{A5594023-21E9-45F8-8928-AA591AD1D80B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.Core", "PromotionEngine.Core\PromotionEngine.Core.csproj", "{A5594023-21E9-45F8-8928-AA591AD1D80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.DataServices", "PromotionEngine.DataServices\PromotionEngine.DataServices.csproj", "{ED132F57-622C-483E-9255-11209CAF97F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.DataServices", "PromotionEngine.DataServices\PromotionEngine.DataServices.csproj", "{ED132F57-622C-483E-9255-11209CAF97F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionEngine.Domains", "PromotionEngine.Domains\PromotionEngine.Domains.csproj", "{D23EF66B-76CD-4754-975A-962020F850A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PromotionEngine.Domains", "PromotionEngine.Domains\PromotionEngine.Domains.csproj", "{D23EF66B-76CD-4754-975A-962020F850A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DE061BD-8714-4EC5-82C3-D4327161FB71}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,10 +38,6 @@ Global
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63DEC515-12F1-4837-97C0-40AB2617DD4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63774E11-3246-498B-AA07-984CCCAB7CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5594023-21E9-45F8-8928-AA591AD1D80B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5594023-21E9-45F8-8928-AA591AD1D80B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5594023-21E9-45F8-8928-AA591AD1D80B}.Release|Any CPU.ActiveCfg = Release|Any CPU
