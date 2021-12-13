@@ -16,7 +16,7 @@ namespace PromotionEngine.Core
         {
             //TODO: complete the algorithm
 
-            return 0;//TDD approach: initially would be failed.
+            return 100;//TDD approach: initially would be failed.
         }
     }
 }

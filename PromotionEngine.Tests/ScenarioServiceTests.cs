@@ -19,13 +19,36 @@ namespace PromotionEngine.Tests
                 {
                     new ScenarioItem
                     {
-                       Product = new Product()
+                       Product = new Product
+                       {
+                           SKU = "A",
+                           UnitPrice = 50
+                       },
+                       Quantity = 1
+                    },
+                    new ScenarioItem
+                    {
+                       Product = new Product
+                       {
+                           SKU = "B",
+                           UnitPrice = 30
+                       },
+                       Quantity = 1
+                    },
+                    new ScenarioItem
+                    {
+                       Product = new Product
+                       {
+                           SKU = "C",
+                           UnitPrice = 20
+                       },
+                       Quantity = 1
                     }
                 }
             };
 
             ScenarioService scenarioService = new ScenarioService(scenario);
-            int expectedTotal = -1;
+            int expectedTotal = 100;
 
             //Act
             var actutalTotal = scenarioService.CalculateScenatioTotal();
