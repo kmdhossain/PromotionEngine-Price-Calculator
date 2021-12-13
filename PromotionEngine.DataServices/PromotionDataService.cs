@@ -1,5 +1,6 @@
 ﻿using PromotionEngine.Domains;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PromotionEngine.Products
 {
@@ -40,8 +41,8 @@ namespace PromotionEngine.Products
         public Promotion GetProductPromotion(Product product)
         {
             //returns null if no promotion
-
-            return null;
+            return GetAllPromotions()
+                    .FirstOrDefault(p => p.ProductAndQuantity.Keys.Contains(product.SKU));
         }
     }
 }
