@@ -8,8 +8,21 @@ namespace PromotionEngine.Tests
 {
     public class ScenarioServiceTests
     {
+        ScenarioItem Factory_ScenarioItem(string sku, float unitPrice, int quantity)
+        {
+            return new ScenarioItem
+            {
+                Product = new Product
+                {
+                    SKU = sku,
+                    UnitPrice = unitPrice
+                },
+                Quantity = quantity
+            };
+        }
+
         [Fact]
-        public void CalculateScenatioTotal_ValidScenarioPassed_ShouldCalculateTotal()
+        public void CalculateScenatioTotal_TestScenarioAPassed_ShouldCalculateTotal()
         {
             //Arrange
             Scenario scenario = new Scenario
@@ -17,33 +30,9 @@ namespace PromotionEngine.Tests
                 ScenarioName = "A",
                 ScenarioItems = new List<ScenarioItem>
                 {
-                    new ScenarioItem
-                    {
-                       Product = new Product
-                       {
-                           SKU = "A",
-                           UnitPrice = 50
-                       },
-                       Quantity = 1
-                    },
-                    new ScenarioItem
-                    {
-                       Product = new Product
-                       {
-                           SKU = "B",
-                           UnitPrice = 30
-                       },
-                       Quantity = 1
-                    },
-                    new ScenarioItem
-                    {
-                       Product = new Product
-                       {
-                           SKU = "C",
-                           UnitPrice = 20
-                       },
-                       Quantity = 1
-                    }
+                    Factory_ScenarioItem("A", 50, 1),
+                    Factory_ScenarioItem("B", 30, 1),
+                    Factory_ScenarioItem("C", 20, 1)
                 }
             };
 

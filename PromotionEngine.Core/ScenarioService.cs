@@ -1,4 +1,5 @@
 ﻿using PromotionEngine.Domains;
+using PromotionEngine.Products;
 using System;
 
 namespace PromotionEngine.Core
@@ -6,17 +7,24 @@ namespace PromotionEngine.Core
     public class ScenarioService
     {
         Scenario Scenario { get; }
-
+        PromotionDataService PromotionDataService { get { return new PromotionDataService(); } }
         public ScenarioService(Scenario scenario)
         {
             Scenario = scenario;
         }
 
-        public int CalculateScenatioTotal()
+        public float CalculateScenatioTotal()
         {
-            //TODO: complete the algorithm
+            float totalCalculatedPrice = 0;
 
-            return 100;//TDD approach: initially would be failed.
+            foreach(var scenarioItem in Scenario.ScenarioItems)
+            {
+                var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
+                if (promotion == null)
+                    totalCalculatedPrice += scenarioItem.Product.UnitPrice * scenarioItem.Quantity;
+            }
+
+            return totalCalculatedPrice;
         }
     }
 }
