@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PromotionEngine.Core\PromotionEngine.Core.csproj" />
     <ProjectReference Include="..\PromotionEngine.Domains\PromotionEngine.Domains.csproj" />
-    <ProjectReference Include="..\PromotionEngine.Lib\PromotionEngine.Lib.csproj" />
   </ItemGroup>
 
 </Project>
