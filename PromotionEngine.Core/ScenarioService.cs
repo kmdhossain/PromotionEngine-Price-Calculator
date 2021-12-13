@@ -28,7 +28,7 @@ namespace PromotionEngine.Core
                     totalCalculatedPrice += promotionOccurance * promotion.PromotionPrice;
 
                     var remainingQuantityWithOutPromotion = scenarioItem.Quantity % promotion.ProductAndQuantity[scenarioItem.Product.SKU];
-                    totalCalculatedPrice += scenarioItem.Product.UnitPrice * remainingQuantityWithOutPromotion;
+                    totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioItem.Product.UnitPrice;
                 }
             }
 
