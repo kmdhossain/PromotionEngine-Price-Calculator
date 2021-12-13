@@ -27,7 +27,7 @@ namespace PromotionEngine.Products
                     {
                         { "C", 1 },
                         { "D", 1 }
-                    }, PromotionPrice = 30
+                    }, PromotionPrice = 20
                 },
             };                          
         }

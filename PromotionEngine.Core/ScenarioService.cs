@@ -22,6 +22,14 @@ namespace PromotionEngine.Core
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
                 if (promotion == null)
                     totalCalculatedPrice += scenarioItem.Product.UnitPrice * scenarioItem.Quantity;
+                else
+                {
+                    var promotionOccurance = scenarioItem.Quantity / promotion.ProductAndQuantity[scenarioItem.Product.SKU];
+                    totalCalculatedPrice += promotionOccurance * promotion.PromotionPrice;
+
+                    var remainingQuantityWithOutPromotion = scenarioItem.Quantity % promotion.ProductAndQuantity[scenarioItem.Product.SKU];
+                    totalCalculatedPrice += scenarioItem.Product.UnitPrice * remainingQuantityWithOutPromotion;
+                }
             }
 
             return totalCalculatedPrice;
