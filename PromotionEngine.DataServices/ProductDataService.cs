@@ -15,12 +15,5 @@ namespace PromotionEngine.Products
                 new Product { SKU = "D", UnitPrice = 15 }
             };
         }
-
-        public Promotion GetProductPromotion(Product product)
-        {
-            //returns null if no promotion
-
-            return null;
-        }
     }
 }

@@ -40,3 +40,9 @@ Else // no promotion to be applied
 	- Calculate product * quantity
 
 ===============================================
+Test cases
+Check sum for empty scenario
+Check sum for for A, B, C only
+Check sum for for AB, BC, AC combination
+
+===============================================
