@@ -1,6 +1,7 @@
 ﻿using PromotionEngine.Domains;
 using PromotionEngine.Products;
 using System;
+using System.Collections.Generic;
 
 namespace PromotionEngine.Core
 {
@@ -15,20 +16,38 @@ namespace PromotionEngine.Core
 
         public float CalculateScenatioTotal()
         {
+            var _promotionCheckedForProduct = new HashSet<string>();
             float totalCalculatedPrice = 0;
 
-            foreach(var scenarioItem in Scenario.ScenarioItems)
+            foreach (var scenarioItem in Scenario.ScenarioItems)
             {
+                if (_promotionCheckedForProduct.Contains(scenarioItem.Product.SKU))
+                    continue;
+                
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
                 if (promotion == null)
                     totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
                 else
                 {
-                    var promotionOccurance = scenarioItem.Quantity / promotion.ProductAndQuantity[scenarioItem.Product.SKU];
-                    totalCalculatedPrice += promotionOccurance * promotion.PromotionPrice;
+                    bool isSinglePromotion = promotion.ProductAndQuantity.Count == 1;
+                    if (isSinglePromotion)
+                    {
+                        var promotionOccurance = scenarioItem.Quantity / promotion.ProductAndQuantity[scenarioItem.Product.SKU];
+                        totalCalculatedPrice += promotionOccurance * promotion.PromotionPrice;
 
-                    var remainingQuantityWithOutPromotion = scenarioItem.Quantity % promotion.ProductAndQuantity[scenarioItem.Product.SKU];
-                    totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioItem.Product.UnitPrice;
+                        var remainingQuantityWithOutPromotion = scenarioItem.Quantity % promotion.ProductAndQuantity[scenarioItem.Product.SKU];
+                        totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioItem.Product.UnitPrice;
+                    }
+                    else
+                    {
+                        //calculate the promotion for C & D
+                        totalCalculatedPrice += 20;
+
+                        foreach (var promotionItem in promotion.ProductAndQuantity)
+                            _promotionCheckedForProduct.Add(promotionItem.Key);
+
+                    }
+
                 }
             }
 
