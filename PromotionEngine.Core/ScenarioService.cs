@@ -40,12 +40,12 @@ namespace PromotionEngine.Core
                     }
                     else
                     {
-                        //calculate the promotion for C & D
-                        totalCalculatedPrice += 20;
-
+                        // calculate the promotion for C & D, if D exists in scenario, 
                         foreach (var promotionItem in promotion.ProductAndQuantity)
                             _promotionCheckedForProduct.Add(promotionItem.Key);
 
+                        // otherwise consider C as non promotion item
+                        totalCalculatedPrice += 20;
                     }
 
                 }
