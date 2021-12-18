@@ -69,17 +69,19 @@ namespace PromotionEngine.Core
                             //calculate total for number of promotions to be applied
                             totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
 
-                            //calculate total for items for which promotion can't be applied due to combinations and can't be in reminder
+                            //calculate total for items for which promotion can't be applied
                             foreach (var promotionSubItem in promotion.ProductAndQuantity)
                             {
                                 var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
                                 scenarioSubItem.IsCalculatedInTotal = true;
 
+                                //find remaining items that included in promotion quantity for the item
                                 var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
-                                totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
+                                
+                                //find remaining items that couldn't be included due to promotion combinations
+                                remainingQuantityWithOutPromotion += scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
 
-                                var remainingItemInSubItemAfterPromotion = scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
-                                totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioSubItem.Product.UnitPrice;
+                                totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
                             }
 
                        }
