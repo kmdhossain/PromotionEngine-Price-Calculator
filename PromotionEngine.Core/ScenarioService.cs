@@ -61,15 +61,26 @@ namespace PromotionEngine.Core
                                 var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
                                 if (subItemPromotionOccurance < promotionOccuranceInSubItem)
                                     promotionOccuranceInSubItem = subItemPromotionOccurance;
+                            }
 
+                            if (promotionOccuranceInSubItem == int.MaxValue)
+                                promotionOccuranceInSubItem = 0;
+
+                            totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
+
+                            var remainingItemInSubItemAfterPromotion = scenarioItem.Quantity - promotionOccuranceInSubItem;
+                            totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioItem.Product.UnitPrice;
+
+                            foreach (var promotionSubItem in promotion.ProductAndQuantity)
+                            {
+                                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                             
                                 var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
                                 totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
 
                                 scenarioSubItem.IsCalculatedInTotal = true;
                             }
-
-                            totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
-                        }
+                       }
 
                     }
 
