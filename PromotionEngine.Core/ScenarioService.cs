@@ -66,11 +66,18 @@ namespace PromotionEngine.Core
                             if (promotionOccuranceInSubItem == int.MaxValue)
                                 promotionOccuranceInSubItem = 0;
 
+                            //calculate total for number of promotions to be applied
                             totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
 
-                            var remainingItemInSubItemAfterPromotion = scenarioItem.Quantity - promotionOccuranceInSubItem;
-                            totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioItem.Product.UnitPrice;
+                            //calculate total for items for which promotion can't be applied due to combinations and can't be in reminder
+                            foreach (var promotionSubItem in promotion.ProductAndQuantity)
+                            {
+                                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                                var remainingItemInSubItemAfterPromotion = scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value);
+                                totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioSubItem.Product.UnitPrice;
+                            }
 
+                            //calculate the total for each reminder items
                             foreach (var promotionSubItem in promotion.ProductAndQuantity)
                             {
                                 var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
