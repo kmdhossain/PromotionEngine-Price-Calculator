@@ -1,7 +1,5 @@
 ﻿using PromotionEngine.Domains;
 using PromotionEngine.Products;
-using System;
-using System.Collections.Generic;
 
 namespace PromotionEngine.Core
 {
@@ -16,12 +14,13 @@ namespace PromotionEngine.Core
 
         public float CalculateScenatioTotal()
         {
-            var _promotionCheckedForProduct = new HashSet<string>();
             float totalCalculatedPrice = 0;
 
-            foreach (var scenarioItem in Scenario.ScenarioItems.Values)
+            foreach (var scenarioItemKey in Scenario.ScenarioItems.Keys)
             {
-                if (_promotionCheckedForProduct.Contains(scenarioItem.Product.SKU))
+                var scenarioItem = Scenario.ScenarioItems[scenarioItemKey];
+
+                if (scenarioItem.IsCalculatedInTotal)
                     continue;
                 
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
@@ -40,12 +39,38 @@ namespace PromotionEngine.Core
                     }
                     else
                     {
-                        // calculate the promotion for C & D, if D exists in scenario, 
-                        foreach (var promotionItem in promotion.ProductAndQuantity)
-                            _promotionCheckedForProduct.Add(promotionItem.Key);
+                        //check if all promotion items exists in scenario
+                        bool allPromotionItemsInScenario = true;
 
-                        // otherwise consider C as non promotion item
-                        totalCalculatedPrice += 20;
+                        foreach (var promotionSubItem in promotion.ProductAndQuantity)
+                            if (!Scenario.ScenarioItems.ContainsKey(promotionSubItem.Key))
+                            {
+                                allPromotionItemsInScenario = false;
+                                break;
+                            }
+
+                        if(!allPromotionItemsInScenario)//calculate the current item without any promotion
+                            totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
+                        else
+                        {
+                            //find the minimum promotion occurance from scenario
+                            var promotionOccuranceInSubItem = int.MaxValue;
+                            foreach (var promotionSubItem in promotion.ProductAndQuantity)
+                            {
+                                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                                var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
+                                if (subItemPromotionOccurance < promotionOccuranceInSubItem)
+                                    promotionOccuranceInSubItem = subItemPromotionOccurance;
+
+                                var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
+                                totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
+
+                                scenarioSubItem.IsCalculatedInTotal = true;
+                            }
+
+                            totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
+                        }
+
                     }
 
                 }

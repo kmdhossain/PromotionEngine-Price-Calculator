@@ -29,38 +29,6 @@ namespace PromotionEngine.Products
                         { "D", 1 }
                     }, PromotionPrice = 30
                 },
-                
-                new Promotion
-                {
-                    ProductAndQuantity=new Dictionary<string, int>
-                    {
-                        {"A"+"B"+"C",1 }
-                    }, PromotionPrice=100
-                },
-                new Promotion
-                {
-                    ProductAndQuantity=new Dictionary<string, int>
-                    {
-                        {"AB"+"BC"+"AC",1 }
-                    }, PromotionPrice=3100
-                },
-                 new Promotion
-                {
-                    ProductAndQuantity=new Dictionary<string, int>
-                    {
-                        {"A"+"B"+"C",1 }
-                    }, PromotionPrice=100
-                },
-                new Promotion
-                {
-                    ProductAndQuantity=new Dictionary<string, int>
-                    {
-                        {"A",3 },
-                        {"B",5 },
-                        {"C"+"D",1 }
-                    
-                    }, PromotionPrice=280
-                },
             };                          
         }
 

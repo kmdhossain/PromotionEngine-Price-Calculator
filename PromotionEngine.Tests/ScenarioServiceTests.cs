@@ -73,6 +73,33 @@ namespace PromotionEngine.Tests
 
         }
 
+        [Fact]
+        public void CalculateScenatioTotal_TestScenarioCPassed_ShouldCalculateTotal()
+        {
+            //Arrange
+            Scenario scenario = new Scenario
+            {
+                ScenarioName = "C",
+                ScenarioItems = new Dictionary<string, ScenarioItem>
+                {
+                    { "A", Factory_ScenarioItem("A", 50, 3) },
+                    {"B",  Factory_ScenarioItem("B", 30, 5) },
+                    {"C", Factory_ScenarioItem("C", 20, 1) },
+                    {"D", Factory_ScenarioItem("D", 15, 1) }
+                }
+            };
+
+            ScenarioService scenarioService = new ScenarioService(scenario);
+            int expectedTotal = 280;
+
+            //Act
+            var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+            //Assert
+            Assert.Equal(expectedTotal, actutalTotal);
+
+        }
+
         //[Fact]
         //public void CalculateScenatioTotal_TestScenarioCPassed_ShouldCalculateTotal()
         //{
@@ -135,7 +162,7 @@ namespace PromotionEngine.Tests
         //            Factory_ScenarioItem("A", 50, 3),
         //            Factory_ScenarioItem("B", 30, 5),
         //            Factory_ScenarioItem("C"+"D", 30, 1)
-                    
+
         //        }
         //    };
 
