@@ -28,11 +28,11 @@ namespace PromotionEngine.Tests
             Scenario scenario = new Scenario
             {
                 ScenarioName = "A",
-                ScenarioItems = new List<ScenarioItem>
+                ScenarioItems = new Dictionary<string, ScenarioItem>
                 {
-                    Factory_ScenarioItem("A", 50, 1),
-                    Factory_ScenarioItem("B", 30, 1),
-                    Factory_ScenarioItem("C", 20, 1)
+                    { "A", Factory_ScenarioItem("A", 50, 1) },
+                    {"B",  Factory_ScenarioItem("B", 30, 1) },
+                    {"C", Factory_ScenarioItem("C", 20, 1) }
                 }
             };
 
@@ -54,11 +54,11 @@ namespace PromotionEngine.Tests
             Scenario scenario = new Scenario
             {
                 ScenarioName = "B",
-                ScenarioItems = new List<ScenarioItem>
+                ScenarioItems = new Dictionary<string, ScenarioItem>
                 {
-                    Factory_ScenarioItem("A", 50, 5),
-                    Factory_ScenarioItem("B", 30, 5),
-                    Factory_ScenarioItem("C", 20, 1)
+                    { "A", Factory_ScenarioItem("A", 50, 5) },
+                    {"B",  Factory_ScenarioItem("B", 30, 5) },
+                    {"C", Factory_ScenarioItem("C", 20, 1) }
                 }
             };
 
@@ -72,5 +72,82 @@ namespace PromotionEngine.Tests
             Assert.Equal(expectedTotal, actutalTotal);
 
         }
+
+        //[Fact]
+        //public void CalculateScenatioTotal_TestScenarioCPassed_ShouldCalculateTotal()
+        //{
+        //    //Arrange
+        //    Scenario scenario = new Scenario
+        //    {
+        //        ScenarioName = "Add-All-Senario",
+        //        ScenarioItems = new List<ScenarioItem>
+        //        {
+        //            Factory_ScenarioItem("A", 50, 1),
+        //            Factory_ScenarioItem("B", 30, 1),
+        //            Factory_ScenarioItem("C", 20, 1)
+        //        }
+        //    };
+
+        //    ScenarioService scenarioService = new ScenarioService(scenario);
+        //    int expectedTotal = 100;
+
+        //    //Act
+        //    var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+        //    //Assert
+        //    Assert.Equal(expectedTotal, actutalTotal);
+
+        //}
+        //[Fact]
+        //public void CalculateScenatioTotal_TestScenarioDPassed_ShouldCalculateTotal()
+        //{
+        //    //Arrange
+        //    Scenario scenario = new Scenario
+        //    {
+        //        ScenarioName = "Add-All-Senario",
+        //        ScenarioItems = new List<ScenarioItem>
+        //        {
+        //            Factory_ScenarioItem("AB", 1500, 1),
+        //            Factory_ScenarioItem("BC", 600, 1),
+        //            Factory_ScenarioItem("CA", 1000, 1)
+        //        }
+        //    };
+
+        //    ScenarioService scenarioService = new ScenarioService(scenario);
+        //    int expectedTotal = 3100;
+
+        //    //Act
+        //    var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+        //    //Assert
+        //    Assert.Equal(expectedTotal, actutalTotal);
+
+        //}
+        //[Fact]
+        //public void CalculateScenatioTotal_TestScenarioEPassed_ShouldCalculateTotal()
+        //{
+        //    //Arrange
+        //    Scenario scenario = new Scenario
+        //    {
+        //        ScenarioName = "Senario C",
+        //        ScenarioItems = new List<ScenarioItem>
+        //        {
+        //            Factory_ScenarioItem("A", 50, 3),
+        //            Factory_ScenarioItem("B", 30, 5),
+        //            Factory_ScenarioItem("C"+"D", 30, 1)
+                    
+        //        }
+        //    };
+
+        //    ScenarioService scenarioService = new ScenarioService(scenario);
+        //    int expectedTotal = 280;
+
+        //    //Act
+        //    var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+        //    //Assert
+        //    Assert.Equal(expectedTotal, actutalTotal);
+
+        //}
     }
 }

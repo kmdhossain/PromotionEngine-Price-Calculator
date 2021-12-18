@@ -33,7 +33,7 @@ Apply Promotion (scenarioItem)
 
 If product exists in single promotion product dictionary
 	- Calculate single product promotion
-Else if if product exists in multiple product dictionary
+Else if product exists in multiple product dictionary
 	and all products in promotion exists in scenations
 	- get all products in scenario, calculate total based on quantity
 Else // no promotion to be applied

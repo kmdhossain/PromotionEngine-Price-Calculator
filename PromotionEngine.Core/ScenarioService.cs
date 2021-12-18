@@ -19,7 +19,7 @@ namespace PromotionEngine.Core
             var _promotionCheckedForProduct = new HashSet<string>();
             float totalCalculatedPrice = 0;
 
-            foreach (var scenarioItem in Scenario.ScenarioItems)
+            foreach (var scenarioItem in Scenario.ScenarioItems.Values)
             {
                 if (_promotionCheckedForProduct.Contains(scenarioItem.Product.SKU))
                     continue;
