@@ -73,20 +73,15 @@ namespace PromotionEngine.Core
                             foreach (var promotionSubItem in promotion.ProductAndQuantity)
                             {
                                 var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                                var remainingItemInSubItemAfterPromotion = scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value);
-                                totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioSubItem.Product.UnitPrice;
-                            }
+                                scenarioSubItem.IsCalculatedInTotal = true;
 
-                            //calculate the total for each reminder items
-                            foreach (var promotionSubItem in promotion.ProductAndQuantity)
-                            {
-                                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                             
                                 var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
                                 totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
 
-                                scenarioSubItem.IsCalculatedInTotal = true;
+                                var remainingItemInSubItemAfterPromotion = scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
+                                totalCalculatedPrice += remainingItemInSubItemAfterPromotion * scenarioSubItem.Product.UnitPrice;
                             }
+
                        }
 
                     }

@@ -127,5 +127,30 @@ namespace PromotionEngine.Tests
 
         }
 
+        [Fact]
+        public void CalculateScenatioTotal_TestScenarioE2Passed_ShouldCalculateTotal()
+        {
+            //Arrange
+            Scenario scenario = new Scenario
+            {
+                ScenarioName = "E",
+                ScenarioItems = new Dictionary<string, ScenarioItem>
+                {
+                    {"E", Factory_ScenarioItem("E", 20, 7) },
+                    {"F", Factory_ScenarioItem("F", 15, 3) }
+                }
+            };
+
+            ScenarioService scenarioService = new ScenarioService(scenario);
+            int expectedTotal = 165;
+
+            //Act
+            var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+            //Assert
+            Assert.Equal(expectedTotal, actutalTotal);
+
+        }
+
     }
 }
