@@ -54,20 +54,20 @@ namespace PromotionEngine.Core
                         else
                         {
                             //find the minimum promotion occurance from scenario
-                            var promotionOccuranceInSubItem = int.MaxValue;
+                            var promotionOccuranceInProductionCombination = int.MaxValue;
                             foreach (var promotionSubItem in promotion.ProductAndQuantity)
                             {
                                 var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
                                 var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
-                                if (subItemPromotionOccurance < promotionOccuranceInSubItem)
-                                    promotionOccuranceInSubItem = subItemPromotionOccurance;
+                                if (subItemPromotionOccurance < promotionOccuranceInProductionCombination)
+                                    promotionOccuranceInProductionCombination = subItemPromotionOccurance;
                             }
 
-                            if (promotionOccuranceInSubItem == int.MaxValue)
-                                promotionOccuranceInSubItem = 0;
+                            if (promotionOccuranceInProductionCombination == int.MaxValue)
+                                promotionOccuranceInProductionCombination = 0;
 
                             //calculate total for number of promotions to be applied
-                            totalCalculatedPrice += promotionOccuranceInSubItem * promotion.PromotionPrice;
+                            totalCalculatedPrice += promotionOccuranceInProductionCombination * promotion.PromotionPrice;
 
                             //calculate total for items for which promotion can't be applied
                             foreach (var promotionSubItem in promotion.ProductAndQuantity)
@@ -79,7 +79,7 @@ namespace PromotionEngine.Core
                                 var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
                                 
                                 //find remaining items that couldn't be included due to promotion combinations
-                                remainingQuantityWithOutPromotion += scenarioSubItem.Quantity - (promotionOccuranceInSubItem * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
+                                remainingQuantityWithOutPromotion += scenarioSubItem.Quantity - (promotionOccuranceInProductionCombination * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
 
                                 totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
                             }
