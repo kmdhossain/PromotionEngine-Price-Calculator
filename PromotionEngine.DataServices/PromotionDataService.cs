@@ -36,6 +36,14 @@ namespace PromotionEngine.Products
                         { "F", 2 }
                     }, PromotionPrice = 70
                 },
+                new Promotion {
+                    ProductAndQuantity = new Dictionary<string, int>
+                    {
+                        { "AB", 1 },
+                        { "BC", 1 },
+                        { "AC", 1 }
+                    }, PromotionPrice = 310
+                },
             };                          
         }
 

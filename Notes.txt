@@ -42,6 +42,7 @@ Else // no promotion to be applied
 ===============================================
 Test cases
 Check sum for empty scenario
+Check sum for scenario with a product with no promotion
 Check sum for for A, B, C only
 Check sum for for AB, BC, AC combination
 

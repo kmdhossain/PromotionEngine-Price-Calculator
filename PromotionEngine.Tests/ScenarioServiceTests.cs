@@ -177,5 +177,34 @@ namespace PromotionEngine.Tests
 
         }
 
+
+        //Check sum for for AB, BC, AC combination
+        [Fact]
+        public void CalculateScenatioTotal_TestScenarioSumOfCombinationCPassed_ShouldCalculateTotal()
+        {
+            //Arrange
+            Scenario scenario = new Scenario
+            {
+                ScenarioName = "ABC",
+                ScenarioItems = new Dictionary<string, ScenarioItem>
+                {
+                    {"A", Factory_ScenarioItem("AC", 150, 2) },
+                    {"B", Factory_ScenarioItem("BC", 60, 1) },
+                    {"C", Factory_ScenarioItem("AC", 100, 1) }
+                    
+
+                }
+            };
+
+            ScenarioService scenarioService = new ScenarioService(scenario);
+            int expectedTotal = 460;
+
+            //Act
+            var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+            //Assert
+            Assert.Equal(expectedTotal, actutalTotal);
+
+        }
     }
 }
