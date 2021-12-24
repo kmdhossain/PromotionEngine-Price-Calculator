@@ -16,50 +16,30 @@ namespace PromotionEngine.Core
         {
             float totalCalculatedPrice = 0;
 
-            foreach (var scenarioItemKey in Scenario.ScenarioItems.Keys)
+            foreach (var scenarioProductItemSKUKey in Scenario.ScenarioItems.Keys)
             {
-                var scenarioItem = Scenario.ScenarioItems[scenarioItemKey];
+                var scenarioItem = Scenario.ScenarioItems[scenarioProductItemSKUKey];
 
                 if (scenarioItem.IsCalculatedInTotal)
                     continue;
 
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
 
+                //no promotion applicable for current product
                 if (promotion == null)
                 { 
                     totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
                     continue;
                 }
 
-                //check if all promotion items exists in scenario
-                bool allPromotionItemsInScenario = true;
-
-                foreach (var promotionSubItem in promotion.ProductAndQuantity)
-                    if (!Scenario.ScenarioItems.ContainsKey(promotionSubItem.Key))
-                    {
-                        allPromotionItemsInScenario = false;
-                        break;
-                    }
-
-                if (!allPromotionItemsInScenario)//calculate the current item without any promotion
+                if (!IsAllPromotionItemsExistInScenario(promotion))//calculate the current item without any promotion
                     totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
                 else
                 {
-                    //find the minimum promotion occurance from scenario
-                    var promotionOccuranceInProductionCombination = int.MaxValue;
-                    foreach (var promotionSubItem in promotion.ProductAndQuantity)
-                    {
-                        var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                        var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
-                        if (subItemPromotionOccurance < promotionOccuranceInProductionCombination)
-                            promotionOccuranceInProductionCombination = subItemPromotionOccurance;
-                    }
-
-                    if (promotionOccuranceInProductionCombination == int.MaxValue)
-                        promotionOccuranceInProductionCombination = 0;
-
+                    var promotionOccuranceInProductCombination = GetPromotionOccuranceInProductCombination(promotion);
+                    
                     //calculate total for number of promotions to be applied
-                    totalCalculatedPrice += promotionOccuranceInProductionCombination * promotion.PromotionPrice;
+                    totalCalculatedPrice += promotionOccuranceInProductCombination * promotion.PromotionPrice;
 
                     //calculate total for items for which promotion can't be applied
                     foreach (var promotionSubItem in promotion.ProductAndQuantity)
@@ -67,7 +47,7 @@ namespace PromotionEngine.Core
                        var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
                  
                        //find remaining items that couldn't be included due to promotion combinations
-                       var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity - (promotionOccuranceInProductionCombination * promotionSubItem.Value);
+                       var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity - (promotionOccuranceInProductCombination * promotionSubItem.Value);
 
                        totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
 
@@ -80,6 +60,37 @@ namespace PromotionEngine.Core
             }
 
             return totalCalculatedPrice;
+        }
+
+        int GetPromotionOccuranceInProductCombination(Promotion promotion)
+        {
+            var promotionOccuranceInProductCombination = int.MaxValue;
+            foreach (var promotionSubItem in promotion.ProductAndQuantity)
+            {
+                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
+                if (subItemPromotionOccurance < promotionOccuranceInProductCombination)
+                    promotionOccuranceInProductCombination = subItemPromotionOccurance;
+            }
+
+            if (promotionOccuranceInProductCombination == int.MaxValue)
+                promotionOccuranceInProductCombination = 0;
+
+            return promotionOccuranceInProductCombination;
+        }
+
+        bool IsAllPromotionItemsExistInScenario(Promotion promotion)
+        {
+            bool allPromotionItemsInScenario = true;
+
+            foreach (var promotionSubItem in promotion.ProductAndQuantity)
+                if (!Scenario.ScenarioItems.ContainsKey(promotionSubItem.Key))
+                {
+                    allPromotionItemsInScenario = false;
+                    break;
+                }
+
+            return allPromotionItemsInScenario;
         }
     }
 }
