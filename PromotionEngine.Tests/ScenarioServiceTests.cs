@@ -115,7 +115,7 @@ namespace PromotionEngine.Tests
         }
 
         [Fact]
-        public void CalculateScenatioTotal_TestScenarioC2Passed_ShouldCalculateTotal()
+        public void CalculateScenatioTotal_TestScenarioDPassed_ShouldCalculateTotal()
         {
             //Arrange
 
@@ -174,7 +174,7 @@ namespace PromotionEngine.Tests
         }
 
         [Fact]
-        public void CalculateScenatioTotal_TestScenarioE2Passed_ShouldCalculateTotal()
+        public void CalculateScenatioTotal_TestScenarioFPassed_ShouldCalculateTotal()
         {
             //Arrange
             Scenario scenario = new Scenario
@@ -204,7 +204,7 @@ namespace PromotionEngine.Tests
 
         //Check sum for for AB, BC, AC combination
         [Fact]
-        public void CalculateScenatioTotal_TestScenarioSumOfCombinationCPassed_ShouldCalculateTotal()
+        public void CalculateScenatioTotal_TestScenarioSumOfCombinationsPassed_ShouldCalculateTotal()
         {
             //Arrange
 
