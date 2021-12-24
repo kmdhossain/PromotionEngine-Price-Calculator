@@ -1,7 +1,6 @@
 using PromotionEngine.Core;
 using PromotionEngine.DataServices.Providers.InMemory;
 using PromotionEngine.Domains;
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -14,9 +13,9 @@ namespace PromotionEngine.Tests
             return new ScenarioService(new PromotionDataService(), scenario);
         }
 
-        ScenarioItem Factory_ScenarioItem(string sku, float unitPrice, int quantity)
+        KeyValuePair<string, ScenarioItem> Factory_ScenarioItem(string sku, float unitPrice, int quantity)
         {
-            return new ScenarioItem
+            return new KeyValuePair<string, ScenarioItem>(sku, new ScenarioItem
             {
                 Product = new Product
                 {
@@ -24,22 +23,25 @@ namespace PromotionEngine.Tests
                     UnitPrice = unitPrice
                 },
                 Quantity = quantity
-            };
+            });
         }
 
+       
         [Fact]
         public void CalculateScenatioTotal_TestScenarioAPassed_ShouldCalculateTotal()
         {
             //Arrange
+            //Arrange
             Scenario scenario = new Scenario
             {
                 ScenarioName = "A",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    { "A", Factory_ScenarioItem("A", 50, 1) },
-                    {"B",  Factory_ScenarioItem("B", 30, 1) },
-                    {"C", Factory_ScenarioItem("C", 20, 1) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                   new List<KeyValuePair<string, ScenarioItem>>
+                   {
+                       Factory_ScenarioItem("A", 50, 1),
+                       Factory_ScenarioItem("B", 30, 1),
+                       Factory_ScenarioItem("C", 20, 1)
+                   })
             };
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
@@ -57,16 +59,19 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_TestScenarioBPassed_ShouldCalculateTotal()
         {
             //Arrange
+
             Scenario scenario = new Scenario
             {
                 ScenarioName = "B",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    { "A", Factory_ScenarioItem("A", 50, 5) },
-                    {"B",  Factory_ScenarioItem("B", 30, 5) },
-                    {"C", Factory_ScenarioItem("C", 20, 1) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                   new List<KeyValuePair<string, ScenarioItem>>
+                   {
+                       Factory_ScenarioItem("A", 50, 5),
+                       Factory_ScenarioItem("B", 30, 5),
+                       Factory_ScenarioItem("C", 20, 1)
+                   })
             };
+            
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 370;
@@ -83,18 +88,21 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_TestScenarioCPassed_ShouldCalculateTotal()
         {
             //Arrange
+
+
             Scenario scenario = new Scenario
             {
                 ScenarioName = "C",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    { "A", Factory_ScenarioItem("A", 50, 3) },
-                    {"B",  Factory_ScenarioItem("B", 30, 5) },
-                    {"C", Factory_ScenarioItem("C", 20, 1) },
-                    {"D", Factory_ScenarioItem("D", 15, 1) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                   new List<KeyValuePair<string, ScenarioItem>>
+                   {
+                       Factory_ScenarioItem("A", 50, 3),
+                       Factory_ScenarioItem("B", 30, 5),
+                       Factory_ScenarioItem("C", 20, 1),
+                       Factory_ScenarioItem("D", 15, 1)
+                   })
             };
-
+            
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 280;
 
@@ -110,17 +118,20 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_TestScenarioC2Passed_ShouldCalculateTotal()
         {
             //Arrange
+
             Scenario scenario = new Scenario
             {
-                ScenarioName = "C",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    { "A", Factory_ScenarioItem("A", 50, 3) },
-                    {"B",  Factory_ScenarioItem("B", 30, 5) },
-                    {"C", Factory_ScenarioItem("C", 20, 2) },
-                    {"D", Factory_ScenarioItem("D", 15, 1) }
-                }
+                ScenarioName = "D",
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                  new List<KeyValuePair<string, ScenarioItem>>
+                  {
+                       Factory_ScenarioItem("A", 50, 3),
+                       Factory_ScenarioItem("B", 30, 5),
+                       Factory_ScenarioItem("C", 20, 2),
+                       Factory_ScenarioItem("D", 15, 1)
+                  })
             };
+            
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 300;
@@ -137,15 +148,19 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_TestScenarioE1Passed_ShouldCalculateTotal()
         {
             //Arrange
+
             Scenario scenario = new Scenario
             {
                 ScenarioName = "E",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    {"E", Factory_ScenarioItem("E", 20, 7) },
-                    {"F", Factory_ScenarioItem("F", 15, 3) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                  new List<KeyValuePair<string, ScenarioItem>>
+                  {
+                       Factory_ScenarioItem("E", 20, 7),
+                       Factory_ScenarioItem("F", 15, 3)
+                      
+                  })
             };
+           
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 165;
@@ -164,13 +179,16 @@ namespace PromotionEngine.Tests
             //Arrange
             Scenario scenario = new Scenario
             {
-                ScenarioName = "E",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    {"E", Factory_ScenarioItem("E", 20, 15) },
-                    {"F", Factory_ScenarioItem("F", 15, 5) }
-                }
+                ScenarioName = "F",
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                  new List<KeyValuePair<string, ScenarioItem>>
+                  {
+                       Factory_ScenarioItem("E", 20, 15),
+                       Factory_ScenarioItem("F", 15, 5)
+                       
+                  })
             };
+           
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 335;
@@ -189,16 +207,20 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_TestScenarioSumOfCombinationCPassed_ShouldCalculateTotal()
         {
             //Arrange
+
             Scenario scenario = new Scenario
             {
                 ScenarioName = "ABC",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                    {"A", Factory_ScenarioItem("AC", 150, 2) },
-                    {"B", Factory_ScenarioItem("BC", 60, 1) },
-                    {"C", Factory_ScenarioItem("AC", 100, 1) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                  new List<KeyValuePair<string, ScenarioItem>>
+                  {
+                       Factory_ScenarioItem("AB", 150, 2),
+                       Factory_ScenarioItem("BC", 60, 1),
+                       Factory_ScenarioItem("AC", 100, 1)
+                       
+                  })
             };
+            
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 460;
@@ -238,14 +260,18 @@ namespace PromotionEngine.Tests
         public void CalculateScenatioTotal_ScenarioWithEmptyPromotionPassed_ShouldCalculateTotal()
         {
             //Arrange
+
             Scenario scenario = new Scenario
             {
                 ScenarioName = "G",
-                ScenarioItems = new Dictionary<string, ScenarioItem>
-                {
-                  {"G", Factory_ScenarioItem("G", 15, 5) }
-                }
+                ScenarioItems = new Dictionary<string, ScenarioItem>(
+                  new List<KeyValuePair<string, ScenarioItem>>
+                  {
+                       Factory_ScenarioItem("G", 15, 5)
+                       
+                  })
             };
+            
 
             ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 75;
