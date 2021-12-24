@@ -1,15 +1,16 @@
-﻿ using PromotionEngine.Domains;
-using PromotionEngine.Products;
+﻿using PromotionEngine.DataServices.Interfaces;
+using PromotionEngine.Domains;
 
 namespace PromotionEngine.Core
 {
     public class ScenarioService
     {
         Scenario Scenario { get; }
-        PromotionDataService PromotionDataService { get { return new PromotionDataService(); } }
-        public ScenarioService(Scenario scenario)
+        IPromotionDataService PromotionDataService { get; } 
+        public ScenarioService(IPromotionDataService promotionDataService, Scenario scenario)
         {
             Scenario = scenario;
+            PromotionDataService = promotionDataService;
         }
 
         public float CalculateScenatioTotal()
@@ -23,7 +24,7 @@ namespace PromotionEngine.Core
                 if (scenarioItem.IsCalculatedInTotal)
                     continue;
 
-                var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
+                Promotion promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
 
                 //no promotion applicable for current product
                 if (promotion == null)

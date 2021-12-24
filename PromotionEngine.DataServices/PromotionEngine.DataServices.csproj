@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Providers\InMemory\ProductDataService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PromotionEngine.Domains\PromotionEngine.Domains.csproj" />
   </ItemGroup>
 

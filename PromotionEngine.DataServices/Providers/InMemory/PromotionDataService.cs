@@ -1,10 +1,11 @@
-﻿using PromotionEngine.Domains;
+﻿using PromotionEngine.DataServices.Interfaces;
+using PromotionEngine.Domains;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PromotionEngine.Products
+namespace PromotionEngine.DataServices.Providers.InMemory
 {
-    public class PromotionDataService
+    public class PromotionDataService: IPromotionDataService
     {
         public IList<Promotion> GetAllPromotions()
         {

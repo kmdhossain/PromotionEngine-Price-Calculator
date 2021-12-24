@@ -1,4 +1,5 @@
 using PromotionEngine.Core;
+using PromotionEngine.DataServices.Providers.InMemory;
 using PromotionEngine.Domains;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,11 @@ namespace PromotionEngine.Tests
 {
     public class ScenarioServiceTests
     {
+        ScenarioService Factory_ScenarioService(Scenario scenario)
+        {
+            return new ScenarioService(new PromotionDataService(), scenario);
+        }
+
         ScenarioItem Factory_ScenarioItem(string sku, float unitPrice, int quantity)
         {
             return new ScenarioItem
@@ -36,7 +42,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 100;
 
             //Act
@@ -62,7 +68,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 370;
 
             //Act
@@ -89,7 +95,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 280;
 
             //Act
@@ -116,7 +122,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 300;
 
             //Act
@@ -141,7 +147,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 165;
 
             //Act
@@ -166,7 +172,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 335;
 
             //Act
@@ -194,7 +200,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 460;
 
             //Act
@@ -217,7 +223,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 0;
 
             //Act
@@ -241,7 +247,7 @@ namespace PromotionEngine.Tests
                 }
             };
 
-            ScenarioService scenarioService = new ScenarioService(scenario);
+            ScenarioService scenarioService = Factory_ScenarioService(scenario);
             int expectedTotal = 75;
 
             //Act
