@@ -65,8 +65,8 @@ namespace PromotionEngine.Core
                 if (Scenario.ScenarioItems.ContainsKey(promotionSubItem.Key))
                 {
                     var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                    var promitionSubItemQuantity = promotionSubItem.Value;
-                    var subItemPromotionOccurence = scenarioSubItem.Quantity / promitionSubItemQuantity;
+                    var promotionSubItemQuantity = promotionSubItem.Value;
+                    var subItemPromotionOccurence = scenarioSubItem.Quantity / promotionSubItemQuantity;
                     if (subItemPromotionOccurence < minimumPromotionsForProductCombination)
                         minimumPromotionsForProductCombination = subItemPromotionOccurence;
                 }
