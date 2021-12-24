@@ -25,6 +25,12 @@ namespace PromotionEngine.Core
 
                 var promotion = PromotionDataService.GetProductPromotion(scenarioItem.Product);
 
+                if (promotion == null)
+                { 
+                    totalCalculatedPrice += scenarioItem.Quantity * scenarioItem.Product.UnitPrice;
+                    continue;
+                }
+
                 //check if all promotion items exists in scenario
                 bool allPromotionItemsInScenario = true;
 

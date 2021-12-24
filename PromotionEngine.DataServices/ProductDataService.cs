@@ -14,7 +14,8 @@ namespace PromotionEngine.Products
                 new Product { SKU = "C", UnitPrice = 20 },
                 new Product { SKU = "D", UnitPrice = 15 },
                 new Product { SKU = "E", UnitPrice = 20 },
-                new Product { SKU = "F", UnitPrice = 15 }
+                new Product { SKU = "F", UnitPrice = 15 },
+                new Product { SKU = "G", UnitPrice = 15 }
             };
         }
     }

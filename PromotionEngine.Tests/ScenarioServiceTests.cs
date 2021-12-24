@@ -204,5 +204,53 @@ namespace PromotionEngine.Tests
             Assert.Equal(expectedTotal, actutalTotal);
 
         }
+
+        [Fact]
+        public void CalculateScenatioTotal_EmptyScenarioPassed_ShouldCalculateTotal()
+        {
+            //Arrange
+            Scenario scenario = new Scenario
+            {
+                ScenarioName = "Empty",
+                ScenarioItems = new Dictionary<string, ScenarioItem>
+                {
+                }
+            };
+
+            ScenarioService scenarioService = new ScenarioService(scenario);
+            int expectedTotal = 0;
+
+            //Act
+            var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+            //Assert
+            Assert.Equal(expectedTotal, actutalTotal);
+
+        }
+
+        [Fact]
+        public void CalculateScenatioTotal_ScenarioWithEmptyPromotionPassed_ShouldCalculateTotal()
+        {
+            //Arrange
+            Scenario scenario = new Scenario
+            {
+                ScenarioName = "G",
+                ScenarioItems = new Dictionary<string, ScenarioItem>
+                {
+                  {"G", Factory_ScenarioItem("G", 15, 5) }
+                }
+            };
+
+            ScenarioService scenarioService = new ScenarioService(scenario);
+            int expectedTotal = 75;
+
+            //Act
+            var actutalTotal = scenarioService.CalculateScenatioTotal();
+
+            //Assert
+            Assert.Equal(expectedTotal, actutalTotal);
+
+        }
+
     }
 }
