@@ -1,4 +1,4 @@
-﻿using PromotionEngine.Domains;
+﻿ using PromotionEngine.Domains;
 using PromotionEngine.Products;
 
 namespace PromotionEngine.Core
@@ -58,16 +58,15 @@ namespace PromotionEngine.Core
                     //calculate total for items for which promotion can't be applied
                     foreach (var promotionSubItem in promotion.ProductAndQuantity)
                     {
-                        var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                        scenarioSubItem.IsCalculatedInTotal = true;
+                       var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                 
+                       //find remaining items that couldn't be included due to promotion combinations
+                       var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity - (promotionOccuranceInProductionCombination * promotionSubItem.Value);
 
-                        //find remaining items that included in promotion quantity for the item
-                        var remainingQuantityWithOutPromotion = scenarioSubItem.Quantity % promotionSubItem.Value;
+                       totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
 
-                        //find remaining items that couldn't be included due to promotion combinations
-                        remainingQuantityWithOutPromotion += scenarioSubItem.Quantity - (promotionOccuranceInProductionCombination * promotionSubItem.Value) - remainingQuantityWithOutPromotion;
+                       scenarioSubItem.IsCalculatedInTotal = true;
 
-                        totalCalculatedPrice += remainingQuantityWithOutPromotion * scenarioSubItem.Product.UnitPrice;
                     }
 
                 }

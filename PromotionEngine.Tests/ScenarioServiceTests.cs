@@ -191,8 +191,6 @@ namespace PromotionEngine.Tests
                     {"A", Factory_ScenarioItem("AC", 150, 2) },
                     {"B", Factory_ScenarioItem("BC", 60, 1) },
                     {"C", Factory_ScenarioItem("AC", 100, 1) }
-                    
-
                 }
             };
 
