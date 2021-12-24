@@ -68,10 +68,13 @@ namespace PromotionEngine.Core
             var promotionOccuranceInProductCombination = int.MaxValue;
             foreach (var promotionSubItem in promotion.ProductAndQuantity)
             {
-                var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
-                var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
-                if (subItemPromotionOccurance < promotionOccuranceInProductCombination)
-                    promotionOccuranceInProductCombination = subItemPromotionOccurance;
+                if (Scenario.ScenarioItems.ContainsKey(promotionSubItem.Key))
+                {
+                    var scenarioSubItem = Scenario.ScenarioItems[promotionSubItem.Key];
+                    var subItemPromotionOccurance = scenarioSubItem.Quantity / promotionSubItem.Value;
+                    if (subItemPromotionOccurance < promotionOccuranceInProductCombination)
+                        promotionOccuranceInProductCombination = subItemPromotionOccurance;
+                }
             }
 
             if (promotionOccuranceInProductCombination == int.MaxValue)
