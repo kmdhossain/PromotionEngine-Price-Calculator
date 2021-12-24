@@ -1,4 +1,4 @@
-**Simple Promotion Engine for Checkout Cart:**
+**Simple Promotion Engine for Price Calculator:**
 
 This program is intended to do with .Net based with C# language where user able to apply different promotion at checkout process.  
 
@@ -55,24 +55,12 @@ D	15
 **Total:280**
 
 
-**Build, Run and Test Instructions:**
+## Running the Tests
 
 Source code is implemended by Visual studio 2017 and .Net 2.0 framework. 
-  
- Unit test run by Xunit Framework. 
+Unit test run by Xunit Framework. 
 
-**Running the Program:**
-
-Open the solution by using visual studio 2017 and make sure Promotion Engine console is set as a startup project. 
-
-
-
-**Running the Tests:**
-
-
-**Notes for Design, Implementation:**
-
-
-**Notes on Tests:**
-
-**Further Necessary Improvements:**
+* Open the solution in visual studio. 
+* Make sure required xUnit Test adapters are installed.
+* Navigate to following Visual Studio menu: Test -> Windows -> Test Explorer
+* Click 'Run All' button from Test Explorer.
